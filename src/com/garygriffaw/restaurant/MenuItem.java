@@ -1,5 +1,7 @@
 package com.garygriffaw.restaurant;
 
+import java.util.Objects;
+
 public class MenuItem {
     private String name;
     private String description;
@@ -13,6 +15,44 @@ public class MenuItem {
         this.price = price;
         this.category = category;
         this.newItem = newItem;
+    }
+
+    public String displayMenuItem() {
+        String newItem;
+        if (isNewItem())
+            newItem = "New Item! ";
+        else
+            newItem = "";
+
+        return "Category: " + category +
+                " " + newItem +
+                name +
+                " - " + description +
+                "; Price: " + price;
+    }
+
+    @Override
+    public String toString() {
+        return "MenuItem(" +
+                "Item: " + name +
+                "; Description: " + description +
+                "; Price: " + price +
+                "; Category: " + category +
+                "; NewItem: " + newItem +
+                ')';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MenuItem menuItem = (MenuItem) o;
+        return name.equals(menuItem.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     // Getters and Setters
